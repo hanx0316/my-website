@@ -1,6 +1,22 @@
 // 货源数据：新增就复制一段放最上面，sold设为true就是已售
 const sources = [
-  {
+ {
+    date: "2026-09-04",
+    area: "马来西亚",
+    product: "3T",
+    price: "175万美金/台",
+    quantity: "200台",
+    terms: "设备已完成状态：
+
+1.IDC托管协议
+2.机位证明
+3.BIS协议备案完成
+4.GPS 已拆
+5.机台已洗白",
+    payment: "外币",
+    remark: "支持现场验货",
+    sold: false
+  }, {
     date: "2026-09-04",
     area: "马来西亚",
     product: "4T",
