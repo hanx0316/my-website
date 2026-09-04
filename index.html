@@ -1,182 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>算力集 - 专业算力服务器买卖平台</title>
-  <meta name="description" content="算力集：一站式算力服务器买卖平台。新机、二手、整机、集群，透明报价，快速交付，助力AI训练与高性能计算。" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    :root {
-      --green: #0a9b08;
-      --green-light: rgba(10, 155, 8, 0.08);
-      --green-glow: 0 0 20px rgba(10, 155, 8, 0.25);
-    }
-    
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #ffffff;
-      color: #1e293b;
-    }
-    
-    html { scroll-behavior: smooth; }
-    
-    .btn-green {
-      background: var(--green);
-      color: #fff;
-      font-weight: 600;
-      transition: all 0.25s ease;
-    }
-    .btn-green:hover {
-      background: #088006;
-      box-shadow: var(--green-glow);
-      transform: translateY(-1px);
-    }
-    
-    .card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      border-color: rgba(10, 155, 8, 0.4);
-      box-shadow: 0 8px 24px -6px rgba(10, 155, 8, 0.12);
-      transform: translateY(-2px);
-    }
-    
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 0 rgba(10, 155, 8, 0.5);
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(10, 155, 8, 0.5); }
-      70% { box-shadow: 0 0 0 10px rgba(10, 155, 8, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(10, 155, 8, 0); }
-    }
-    
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .table-wrap table {
-      min-width: 1100px;
-    }
-    
-    .nav-link:hover { color: var(--green); }
-  </style>
-</head>
-<body class="bg-white text-slate-800">
-
-  <!-- 导航 -->
-  <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="#" class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-[#0a9b08] flex items-center justify-center font-bold text-white text-sm">算</div>
-          <span class="text-xl font-bold tracking-tight text-slate-900">算力集</span>
-        </a>
-
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-          <a href="#real-sources" class="nav-link transition">今日货源</a>
-          <a href="#features" class="nav-link transition">产品优势</a>
-          <a href="#how" class="nav-link transition">交易流程</a>
-          <a href="#about" class="nav-link transition">关于我们</a>
-          <a href="#contact" class="nav-link transition">联系我们</a>
-        </nav>
-
-        <div class="flex items-center gap-3">
-          <a href="#contact" class="hidden sm:inline text-sm font-medium text-slate-600 hover:text-[#0a9b08] transition">联系我们</a>
-          <a href="#contact" class="px-4 py-2 rounded-lg btn-green text-sm">
-            立即询价
-          </a>
-          <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition" aria-label="菜单">
-            <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+        <div class="flex gap-2 flex-wrap">
+          <button id="addRowBtn" class="px-3.5 py-2 text-sm rounded-lg bg-[#0a9b08] text-white font-medium hover:bg-[#088006] transition">
+            + 新增货源
+          </button>
+          <button id="exportCodeBtn" class="px-3.5 py-2 text-sm rounded-lg border border-slate-300 text-slate-700 font-medium hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+            导出表格代码
           </button>
         </div>
-      </div>
-
-      <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-slate-100">
-        <nav class="flex flex-col gap-1 pt-3 text-sm font-medium text-slate-600">
-          <a href="#real-sources" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">今日货源</a>
-          <a href="#features" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">产品优势</a>
-          <a href="#how" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">交易流程</a>
-          <a href="#about" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">关于我们</a>
-          <a href="#contact" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">联系我们</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="pt-28 pb-14 bg-gradient-to-b from-slate-50 to-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a9b08]/08 border border-[#0a9b08]/15 text-sm font-medium mb-7">
-        <span class="pulse-dot"></span>
-        <span class="text-[#0a9b08]">真实货源 · 每天更新</span>
-      </div>
-      
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-tight mb-5">
-        AI 创新从 <span class="text-[#0a9b08]">算力集</span> 开始
-      </h1>
-      <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-500 mb-9">
-        找真实货源，直接对接；买 GPU 服务器，少走弯路。
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#real-sources" class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl btn-green text-lg">
-          查看今日真实货源
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </a>
-        <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-slate-300 hover:border-[#0a9b08]/50 text-slate-700 font-medium transition">
-          我有采购需求
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 信任数据条 -->
-  <section class="py-6 border-y border-slate-100 bg-slate-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-3 gap-6 text-center">
-        <div>
-          <p class="text-2xl font-bold text-[#0a9b08]">200+</p>
-          <p class="text-sm text-slate-500 mt-1">服务企业客户</p>
-        </div>
-        <div>
-          <p class="text-2xl font-bold text-[#0a9b08]">48h</p>
-          <p class="text-sm text-slate-500 mt-1">平均交付时效</p>
-        </div>
-        <div>
-          <p class="text-2xl font-bold text-[#0a9b08]">100%</p>
-          <p class="text-sm text-slate-500 mt-1">验机报告覆盖</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 今日B300货源 -->
-  <section id="real-sources" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="pulse-dot"></span>
-            <span class="text-sm font-semibold text-[#0a9b08]">每天更新</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">今日 B300 货源状态</h2>
-          <p class="text-slate-500 mt-1 text-sm">以下为真实可对接货源，库存、成色、价格以最终人工确认为准</p>
-        </div>
-        <a href="#contact" class="inline-flex items-center text-sm font-semibold text-[#0a9b08] hover:opacity-80 whitespace-nowrap">
-          我有采购需求 →
-        </a>
+        <p class="text-xs text-slate-500">双击单元格可直接编辑 · 已售货源一键标记</p>
       </div>
 
       <div class="table-wrap rounded-xl border border-slate-200 shadow-sm">
@@ -191,278 +22,227 @@
               <th class="px-4 py-3.5 border-b border-slate-200 min-w-[220px]">主要交易条件</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">结算方式</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
+              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-24 text-center">操作</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">1</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">180万美金/台</td>
-              <td class="px-4 py-3.5">最低32台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">包出关；支持同台验资验货；可派工程师检测（需买家授权+签保密协议）；货主安排吃住</td>
-              <td class="px-4 py-3.5">外币</td>
-              <td class="px-4 py-3.5">支持现场验货</td>
+          <tbody id="sourceTbody" class="divide-y divide-slate-100">
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">1</td>
+              <td class="px-4 py-3.5 editable">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium editable">4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">180万美金/台</td>
+              <td class="px-4 py-3.5 editable">最低32台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">包出关；支持同台验资验货；可派工程师检测（需买家授权+签保密协议）；货主安排吃住</td>
+              <td class="px-4 py-3.5 editable">外币</td>
+              <td class="px-4 py-3.5 editable">支持现场验货</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">2</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">3T / 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">3T:168万<br>4T:176万</td>
-              <td class="px-4 py-3.5">32台3T + 256台4T</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">货主可协助物流；香港公司交易；货主为基金公司</td>
-              <td class="px-4 py-3.5">美元</td>
-              <td class="px-4 py-3.5">需整批采购</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">2</td>
+              <td class="px-4 py-3.5 editable">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium editable">3T / 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">3T:168万<br>4T:176万</td>
+              <td class="px-4 py-3.5 editable">32台3T + 256台4T</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">货主可协助物流；香港公司交易；货主为基金公司</td>
+              <td class="px-4 py-3.5 editable">美元</td>
+              <td class="px-4 py-3.5 editable">需整批采购</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">3</td>
-              <td class="px-4 py-3.5">泰国</td>
-              <td class="px-4 py-3.5 font-medium">现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">162 USDT</td>
-              <td class="px-4 py-3.5">最低128台<br>共512台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需要泰国虚拟IDC（可借用）</td>
-              <td class="px-4 py-3.5">USDT</td>
-              <td class="px-4 py-3.5">现货</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">3</td>
+              <td class="px-4 py-3.5 editable">泰国</td>
+              <td class="px-4 py-3.5 font-medium editable">现货</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">162 USDT</td>
+              <td class="px-4 py-3.5 editable">最低128台<br>共512台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">需要泰国虚拟IDC（可借用）</td>
+              <td class="px-4 py-3.5 editable">USDT</td>
+              <td class="px-4 py-3.5 editable">现货</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">4</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">172万美金/台</td>
-              <td class="px-4 py-3.5">256台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">要求双非主体；自提；现场看货；货已洗过</td>
-              <td class="px-4 py-3.5">USDT (U)</td>
-              <td class="px-4 py-3.5">支持现场看货</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">4</td>
+              <td class="px-4 py-3.5 editable">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium editable">超微 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">172万美金/台</td>
+              <td class="px-4 py-3.5 editable">256台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">要求双非主体；自提；现场看货；货已洗过</td>
+              <td class="px-4 py-3.5 editable">USDT (U)</td>
+              <td class="px-4 py-3.5 editable">支持现场看货</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">5</td>
-              <td class="px-4 py-3.5">中东</td>
-              <td class="px-4 py-3.5 font-medium">3T 现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">165万美金/台</td>
-              <td class="px-4 py-3.5">-</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">可派工程师直接拉走；不收美金</td>
-              <td class="px-4 py-3.5">部分人民币 + 部分离岸人民币/港币</td>
-              <td class="px-4 py-3.5">支持工程师拉货</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">5</td>
+              <td class="px-4 py-3.5 editable">中东</td>
+              <td class="px-4 py-3.5 font-medium editable">3T 现货</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">165万美金/台</td>
+              <td class="px-4 py-3.5 editable">-</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">可派工程师直接拉走；不收美金</td>
+              <td class="px-4 py-3.5 editable">部分人民币 + 部分离岸人民币/港币</td>
+              <td class="px-4 py-3.5 editable">支持工程师拉货</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">6</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">超微 3T/4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">145万美金/台</td>
-              <td class="px-4 py-3.5">256台/周</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需先提供DC材料+BIS等审核材料（长期供电协议）；材料审核通过后报价签约；香港签约，马来提货；不要求验资</td>
-              <td class="px-4 py-3.5">仅接受美元</td>
-              <td class="px-4 py-3.5">机房需真实运营</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">6</td>
+              <td class="px-4 py-3.5 editable">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium editable">超微 3T/4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">145万美金/台</td>
+              <td class="px-4 py-3.5 editable">256台/周</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">需先提供DC材料+BIS等审核材料（长期供电协议）；材料审核通过后报价签约；香港签约，马来提货；不要求验资</td>
+              <td class="px-4 py-3.5 editable">仅接受美元</td>
+              <td class="px-4 py-3.5 editable">机房需真实运营</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">7</td>
-              <td class="px-4 py-3.5">深圳</td>
-              <td class="px-4 py-3.5 font-medium">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">1435万/台</td>
-              <td class="px-4 py-3.5">128台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">资金证明，营业执照</td>
-              <td class="px-4 py-3.5">人民币</td>
-              <td class="px-4 py-3.5">营业执照+验资(换合约及保函)/签约/安排交易时间地点/验货/汇款/取货</td>
+            <tr class="hover:bg-slate-50/80 transition source-row">
+              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">7</td>
+              <td class="px-4 py-3.5 editable">深圳</td>
+              <td class="px-4 py-3.5 font-medium editable">超微 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">1435万/台</td>
+              <td class="px-4 py-3.5 editable">128台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">资金证明，营业执照</td>
+              <td class="px-4 py-3.5 editable">人民币</td>
+              <td class="px-4 py-3.5 editable">营业执照+验资(换合约及保函)/签约/安排交易时间地点/验货/汇款/取货</td>
+              <td class="px-4 py-3.5 text-center">
+                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+                  标为已售
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="mt-4 text-xs text-slate-400 text-center">* 以上信息每天更新，具体以实际沟通确认结果为准。有意向请直接联系我们。</p>
-    </div>
-  </section>
 
-  <!-- 产品优势 -->
-  <section id="features" class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-3">为什么选择算力集</h2>
-        <p class="text-slate-500">一手现货 · 透明报价 · 高效交割</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-7 rounded-2xl card">
-          <div class="w-12 h-12 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-2xl mb-5">📦</div>
-          <h3 class="text-xl font-semibold mb-3 text-slate-900">现货资源充足</h3>
-          <p class="text-slate-500 leading-relaxed">覆盖英伟达 B300/GB300/H200 等主流高端算力设备，支持整机交付、多卡集群配置，现货与定制方案并行。</p>
-        </div>
-        <div class="p-7 rounded-2xl card">
-          <div class="w-12 h-12 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-2xl mb-5">⚡</div>
-          <h3 class="text-xl font-semibold mb-3 text-slate-900">交割高效省心</h3>
-          <p class="text-slate-500 leading-relaxed">买卖双方精准对接，配套专业验机报告与全链路物流交付，大幅缩短算力上线周期。</p>
-        </div>
-        <div class="p-7 rounded-2xl card">
-          <div class="w-12 h-12 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-2xl mb-5">💰</div>
-          <h3 class="text-xl font-semibold mb-3 text-slate-900">价格透明可控</h3>
-          <p class="text-slate-500 leading-relaxed">参考实时市场行情报价，无任何隐形费用，剔除冗余中间环节，帮您控制综合采购成本。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<style>
+  .sold-out td { color: #94a3b8 !important; text-decoration: line-through; }
+  .sold-out td.text-\[\#0a9b08\] { color: #94a3b8 !important; }
+  .editable { cursor: text; }
+  .editing { background: #f0fdf4; outline: 2px solid #0a9b08; outline-offset: -2px; border-radius: 4px; }
+</style>
 
-  <!-- 交易流程 -->
-  <section id="how" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">标准化流程，让算力交易更高效可控</h2>
-        <p class="text-slate-500 max-w-2xl mx-auto">全节点规范管控，买卖双方全程清晰可追溯</p>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-[#0a9b08] text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md shadow-[#0a9b08]/20">1</div>
-          <h4 class="font-semibold mb-2 text-slate-900">提交供需需求</h4>
-          <p class="text-sm text-slate-500 leading-relaxed">填写硬件型号、数量、预算或报价，快速提交采购或出售诉求。</p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-[#0a9b08] text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md shadow-[#0a9b08]/20">2</div>
-          <h4 class="font-semibold mb-2 text-slate-900">双向精准匹配</h4>
-          <p class="text-sm text-slate-500 leading-relaxed">系统智能筛选 + 人工核验货源，双向匹配资质与需求，锁定最优合作方案。</p>
-        </div>
-        <div class="text-center">
-          <div class="w-14 h-14 rounded-full bg-[#0a9b08] text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md shadow-[#0a9b08]/20">3</div>
-          <h4 class="font-semibold mb-2 text-slate-900">验机交割签约</h4>
-          <p class="text-sm text-slate-500 leading-relaxed">出具专业硬件检测报告，签署规范交易协议，保障设备真实与交易合规。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+  const tbody = document.getElementById('sourceTbody');
 
-  <!-- 关于我们 -->
-  <section id="about" class="py-16 bg-slate-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-slate-900 mb-3">关于我们</h2>
-        <p class="text-slate-500">算力集・全球高端 AI 算力硬件供应链服务平台</p>
-      </div>
-
-      <div class="space-y-6 text-slate-600 leading-relaxed">
-        <p>
-          <strong class="text-slate-900">算力集</strong>专注于高端 AI 算力硬件供应链服务，在上海、深圳设有专业采购服务与商务团队。依托全球化算力产业核心渠道资源，可高效对接全球优质算力硬件，为客户实现供需精准匹配与资源最优配置。
-        </p>
-        
-        <p>
-          我们聚焦企业级算力基础设施供给与全周期配套服务，为各行业客户提供高端算力服务器、工作站等核心产品的一站式采购交付方案。核心团队拥有近二十年国内外高端算力硬件的贸易与技术服务积淀，曾深度服务国内头部科技企业，形成了覆盖选型适配、交付跟进、资源协调的标准化服务体系。
-        </p>
-
-        <div class="grid sm:grid-cols-2 gap-5 pt-2">
-          <div class="p-5 rounded-xl bg-white border border-slate-200">
-            <h4 class="font-semibold text-[#0a9b08] mb-2">核心供应链资源</h4>
-            <p class="text-sm text-slate-500">手握算力行业核心上游资源，具备稀缺产能调度优势，拥有英伟达 OEM 体系核心渠道资质，可协助客户优先锁定排产额度、锁定稀缺产能配额，大幅缩短高端算力设备交付周期。</p>
-          </div>
-          <div class="p-5 rounded-xl bg-white border border-slate-200">
-            <h4 class="font-semibold text-[#0a9b08] mb-2">全流程专业支持</h4>
-            <p class="text-sm text-slate-500">配备专属商务服务团队，国内业务保障交易安全高效交付；跨境业务全程协助资质审核、合规报备与清关结算，扫清算力项目落地障碍。</p>
-          </div>
-        </div>
-
-        <p class="text-slate-500 text-sm pt-2">
-          以专业团队为根基，以核心供应链资源为壁垒，以全流程配套服务为支撑，算力集致力于成为客户可信赖的算力供应链合作伙伴，助力各行业客户高效落地 AI 算力布局。
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 联系 -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-slate-900 mb-3">准备好对接真实货源了吗？</h2>
-        <p class="text-slate-500">无论购买还是出售算力服务器，算力集团队随时为你服务。</p>
-      </div>
-
-      <!-- 微信卡片 -->
-      <div class="p-8 rounded-2xl card text-center mb-8">
-        <p class="text-slate-500 mb-5">添加微信，获取最新货源与精准报价</p>
-        <div class="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-[#0a9b08]/08 border border-[#0a9b08]/20">
-          <svg class="w-7 h-7 text-[#0a9b08]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .172.14.312.313.312a.32.32 0 0 0 .172-.048l1.943-1.138a.59.59 0 0 1 .523-.047c.92.3 1.916.46 2.963.46 4.8 0 8.691-3.288 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-2.32 7.94c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16zm4.64 0c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16z"/>
-            <path d="M15.312 10.813c4.05 0 7.34 2.69 7.34 6.01 0 1.79-.95 3.4-2.45 4.5a.48.48 0 0 0-.17.54l.32 1.2c.015.057.039.114.039.172 0 .14-.11.25-.25.25a.26.26 0 0 1-.14-.04l-1.57-.92a.48.48 0 0 0-.42-.04c-.75.24-1.55.37-2.4.37-4.05 0-7.34-2.69-7.34-6.01 0-3.32 3.29-6.01 7.34-6.01zm-1.88 4.29c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm3.76 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
-          </svg>
-          <span class="text-2xl font-bold text-[#0a9b08] tracking-wide">hanx-316</span>
-        </div>
-        <p class="text-sm text-slate-400 mt-4">添加时请备注「算力询价」</p>
-      </div>
-
-      <!-- 表单（已修好） -->
-      <div class="p-8 rounded-2xl card">
-        <form action="https://formsubmit.co/aladeve@qq.com" method="POST" class="space-y-5">
-          <!-- 隐藏配置 -->
-          <input type="hidden" name="_subject" value="【算力集】新的询价需求">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-sm font-medium text-slate-600 mb-1.5">称呼</label>
-              <input type="text" name="称呼" required placeholder="怎么称呼您" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0a9b08] focus:ring-1 focus:ring-[#0a9b08] transition">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-slate-600 mb-1.5">联系方式</label>
-              <input type="text" name="联系方式" required placeholder="手机号或微信号" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0a9b08] focus:ring-1 focus:ring-[#0a9b08] transition">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1.5">公司名称</label>
-            <input type="text" name="公司名称" required placeholder="请输入公司全称" class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0a9b08] focus:ring-1 focus:ring-[#0a9b08] transition">
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-slate-600 mb-2">身份</label>
-            <div class="grid grid-cols-3 gap-3">
-              <label class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 bg-white cursor-pointer hover:border-[#0a9b08]/50 transition has-[:checked]:border-[#0a9b08] has-[:checked]:bg-[#0a9b08]/08">
-                <input type="radio" name="身份" value="买方" required class="accent-[#0a9b08]">
-                <span class="text-sm">买方</span>
-              </label>
-              <label class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 bg-white cursor-pointer hover:border-[#0a9b08]/50 transition has-[:checked]:border-[#0a9b08] has-[:checked]:bg-[#0a9b08]/08">
-                <input type="radio" name="身份" value="卖方" class="accent-[#0a9b08]">
-                <span class="text-sm">卖方</span>
-              </label>
-              <label class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 bg-white cursor-pointer hover:border-[#0a9b08]/50 transition has-[:checked]:border-[#0a9b08] has-[:checked]:bg-[#0a9b08]/08">
-                <input type="radio" name="身份" value="居间" class="accent-[#0a9b08]">
-                <span class="text-sm">居间</span>
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-slate-600 mb-1.5">需求描述</label>
-            <textarea name="需求描述" rows="3" placeholder="例如：需要 B300 4T，数量、预算、交期..." class="w-full bg-white border border-slate-300 rounded-lg px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#0a9b08] focus:ring-1 focus:ring-[#0a9b08] transition resize-none"></textarea>
-          </div>
-
-          <button type="submit" class="w-full py-3.5 rounded-xl btn-green">
-            提交询价需求
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- 页脚 -->
-  <footer class="py-10 border-t border-slate-200 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-[#0a9b08] flex items-center justify-center font-bold text-white text-sm">算</div>
-          <span class="font-bold text-slate-900">算力集</span>
-        </div>
-        <p class="text-sm text-slate-500">© 2026 算力集 · 专业算力服务器买卖平台</p>
-        <div class="flex gap-6 text-sm text-slate-500">
-          <a href="#about" class="hover:text-[#0a9b08] transition">关于我们</a>
-          <a href="#" class="hover:text-[#0a9b08] transition">服务条款</a>
-          <a href="#" class="hover:text-[#0a9b08] transition">隐私政策</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+  // 刷新序号
+  function refreshIndex() {
+    tbody.querySelectorAll('.row-index').forEach((el, idx) => {
+      el.textContent = idx + 1;
     });
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  }
+
+  // 双击编辑单元格
+  tbody.addEventListener('dblclick', (e) => {
+    const td = e.target.closest('.editable');
+    if (!td || td.classList.contains('editing')) return;
+
+    const oldText = td.innerHTML;
+    td.classList.add('editing');
+    td.contentEditable = true;
+    td.focus();
+
+    // 选中全部内容
+    const range = document.createRange();
+    range.selectNodeContents(td);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    const finish = () => {
+      td.contentEditable = false;
+      td.classList.remove('editing');
+      if (td.innerHTML.trim() === '') td.innerHTML = oldText;
+    };
+
+    td.addEventListener('blur', finish, { once: true });
+    td.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        td.blur();
+      }
+      if (e.key === 'Escape') {
+        td.innerHTML = oldText;
+        td.blur();
+      }
     });
-  </script>
-</body>
-</html>
+  });
+
+  // 新增货源（置顶）
+  document.getElementById('addRowBtn').addEventListener('click', () => {
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-slate-50/80 transition source-row';
+    tr.innerHTML = `
+      <td class="px-4 py-3.5 font-medium text-slate-900 row-index">1</td>
+      <td class="px-4 py-3.5 editable">请输入货源地</td>
+      <td class="px-4 py-3.5 font-medium editable">请输入产品</td>
+      <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">请输入单价</td>
+      <td class="px-4 py-3.5 editable">请输入数量</td>
+      <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">请输入交易条件</td>
+      <td class="px-4 py-3.5 editable">请输入结算方式</td>
+      <td class="px-4 py-3.5 editable">请输入备注</td>
+      <td class="px-4 py-3.5 text-center">
+        <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
+          标为已售
+        </button>
+      </td>
+    `;
+    tbody.insertBefore(tr, tbody.firstChild);
+    refreshIndex();
+  });
+
+  // 标记已售
+  tbody.addEventListener('click', (e) => {
+    const btn = e.target.closest('.toggle-sold');
+    if (!btn) return;
+    const tr = btn.closest('tr');
+    tr.classList.toggle('sold-out');
+    btn.textContent = tr.classList.contains('sold-out') ? '恢复上架' : '标为已售';
+  });
+
+  // 导出纯净表格代码
+  document.getElementById('exportCodeBtn').addEventListener('click', () => {
+    // 克隆节点，移除编辑相关的类和操作列
+    const clone = tbody.cloneNode(true);
+    clone.querySelectorAll('.toggle-sold').forEach(btn => btn.closest('td').remove());
+    clone.querySelectorAll('.editable').forEach(el => el.classList.remove('editable'));
+    clone.querySelectorAll('.source-row').forEach(el => el.classList.remove('source-row'));
+    clone.id = '';
+
+    // 组装成完整表格HTML
+    const code = `<tbody class="divide-y divide-slate-100">
+${clone.innerHTML.trim()}
+</tbody>`;
+
+    navigator.clipboard.writeText(code).then(() => {
+      const btn = document.getElementById('exportCodeBtn');
+      const originText = btn.textContent;
+      btn.textContent = '已复制代码！';
+      btn.classList.add('border-[#0a9b08]', 'text-[#0a9b08]');
+      setTimeout(() => {
+        btn.textContent = originText;
+        btn.classList.remove('border-[#0a9b08]', 'text-[#0a9b08]');
+      }, 2000);
+    });
+  });
+</script>
