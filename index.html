@@ -66,14 +66,13 @@
       -webkit-overflow-scrolling: touch;
     }
     .table-wrap table {
-      min-width: 1200px;
+      min-width: 1300px;
     }
     
     .nav-link:hover { color: var(--green); }
 
-    /* 已售样式 */
-    .sold-out td { color: #94a3b8 !important; text-decoration: line-through; }
-    .sold-out td.text-\[\#0a9b08\] { color: #94a3b8 !important; }
+    /* 已售样式：整行变浅灰，无删除线 */
+    .sold-out { opacity: 0.55; }
   </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -196,10 +195,11 @@
               <th class="px-4 py-3.5 border-b border-slate-200 min-w-[220px]">主要交易条件</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">结算方式</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
+              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-24 text-center">货源状态</th>
             </tr>
           </thead>
           <tbody id="sourceTbody" class="divide-y divide-slate-100">
-            <!-- 数据自动渲染，不用手动改 -->
+            <!-- 数据自动渲染 -->
           </tbody>
         </table>
       </div>
@@ -309,7 +309,7 @@
         <p class="text-slate-500 mb-5">添加微信，获取最新货源与精准报价</p>
         <div class="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-[#0a9b08]/08 border border-[#0a9b08]/20">
           <svg class="w-7 h-7 text-[#0a9b08]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .172.14.312.313.312a.32.32 0 0 0 .172-.048l1.943-1.138a.59.59 0 0 1 .523-.047c.92.3 1.916.46 2.963.46 4.8 0 8.691-3.288 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-2.32 7.94c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16zm4.64 0c-.64 0-1.16-.52-1.16-1.16s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm3.76 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
+            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .172.14.312.313.312a.32.32 0 0 0 .172-.048l1.943-1.138a.59.59 0 0 1 .523-.047c.92.3 1.916.46 2.963.46 4.8 0 8.691-3.288 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-2.32 7.94c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16zm4.64 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm3.76 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
             <path d="M15.312 10.813c4.05 0 7.34 2.69 7.34 6.01 0 1.79-.95 3.4-2.45 4.5a.48.48 0 0 0-.17.54l.32 1.2c.015.057.039.114.039.172 0 .14-.11.25-.25.25a.26.26 0 0 1-.14-.04l-1.57-.92a.48.48 0 0 0-.42-.04c-.75.24-1.55.37-2.4.37-4.05 0-7.34-2.69-7.34-6.01 0-3.32 3.29-6.01 7.34-6.01zm-1.88 4.29c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
           </svg>
           <span class="text-2xl font-bold text-[#0a9b08] tracking-wide">hanx-316</span>
@@ -408,6 +408,10 @@
       sources.forEach((item, idx) => {
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50/80 transition' + (item.sold ? ' sold-out' : '');
+        const statusTag = item.sold 
+          ? '<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-xs font-medium">已售</span>'
+          : '<span class="inline-block px-2.5 py-0.5 rounded-full bg-[#0a9b08]/10 text-[#0a9b08] text-xs font-medium">有货</span>';
+        
         tr.innerHTML = `
           <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
           <td class="px-4 py-3.5 text-slate-500">${item.date}</td>
@@ -418,6 +422,7 @@
           <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms}</td>
           <td class="px-4 py-3.5">${item.payment}</td>
           <td class="px-4 py-3.5">${item.remark}</td>
+          <td class="px-4 py-3.5 text-center">${statusTag}</td>
         `;
         tbody.appendChild(tr);
       });
