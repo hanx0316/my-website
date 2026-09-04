@@ -66,10 +66,14 @@
       -webkit-overflow-scrolling: touch;
     }
     .table-wrap table {
-      min-width: 1100px;
+      min-width: 1200px;
     }
     
     .nav-link:hover { color: var(--green); }
+
+    /* 已售样式 */
+    .sold-out td { color: #94a3b8 !important; text-decoration: line-through; }
+    .sold-out td.text-\[\#0a9b08\] { color: #94a3b8 !important; }
   </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -183,7 +187,8 @@
         <table class="w-full text-sm text-left">
           <thead class="bg-slate-50 text-slate-600 font-semibold">
             <tr>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源</th>
+              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-16">货源</th>
+              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-28">更新日期</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源地</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">产品</th>
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">单价</th>
@@ -193,77 +198,8 @@
               <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">1</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">180万美金/台</td>
-              <td class="px-4 py-3.5">最低32台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">包出关；支持同台验资验货；可派工程师检测（需买家授权+签保密协议）；货主安排吃住</td>
-              <td class="px-4 py-3.5">外币</td>
-              <td class="px-4 py-3.5">支持现场验货</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">2</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">3T / 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">3T:168万<br>4T:176万</td>
-              <td class="px-4 py-3.5">32台3T + 256台4T</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">货主可协助物流；香港公司交易；货主为基金公司</td>
-              <td class="px-4 py-3.5">美元</td>
-              <td class="px-4 py-3.5">需整批采购</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">3</td>
-              <td class="px-4 py-3.5">泰国</td>
-              <td class="px-4 py-3.5 font-medium">现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">162 USDT</td>
-              <td class="px-4 py-3.5">最低128台<br>共512台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需要泰国虚拟IDC（可借用）</td>
-              <td class="px-4 py-3.5">USDT</td>
-              <td class="px-4 py-3.5">现货</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">4</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">172万美金/台</td>
-              <td class="px-4 py-3.5">256台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">要求双非主体；自提；现场看货；货已洗过</td>
-              <td class="px-4 py-3.5">USDT (U)</td>
-              <td class="px-4 py-3.5">支持现场看货</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">5</td>
-              <td class="px-4 py-3.5">中东</td>
-              <td class="px-4 py-3.5 font-medium">3T 现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">165万美金/台</td>
-              <td class="px-4 py-3.5">-</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">可派工程师直接拉走；不收美金</td>
-              <td class="px-4 py-3.5">部分人民币 + 部分离岸人民币/港币</td>
-              <td class="px-4 py-3.5">支持工程师拉货</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">6</td>
-              <td class="px-4 py-3.5">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium">超微 3T/4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">145万美金/台</td>
-              <td class="px-4 py-3.5">256台/周</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需先提供DC材料+BIS等审核材料（长期供电协议）；材料审核通过后报价签约；香港签约，马来提货；不要求验资</td>
-              <td class="px-4 py-3.5">仅接受美元</td>
-              <td class="px-4 py-3.5">机房需真实运营</td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition">
-              <td class="px-4 py-3.5 font-medium text-slate-900">7</td>
-              <td class="px-4 py-3.5">深圳</td>
-              <td class="px-4 py-3.5 font-medium">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">1435万/台</td>
-              <td class="px-4 py-3.5">128台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">资金证明，营业执照</td>
-              <td class="px-4 py-3.5">人民币</td>
-              <td class="px-4 py-3.5">营业执照+验资(换合约及保函)/签约/安排交易时间地点/验货/汇款/取货</td>
-            </tr>
+          <tbody id="sourceTbody" class="divide-y divide-slate-100">
+            <!-- 数据自动渲染，不用手动改 -->
           </tbody>
         </table>
       </div>
@@ -373,8 +309,8 @@
         <p class="text-slate-500 mb-5">添加微信，获取最新货源与精准报价</p>
         <div class="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-[#0a9b08]/08 border border-[#0a9b08]/20">
           <svg class="w-7 h-7 text-[#0a9b08]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .172.14.312.313.312a.32.32 0 0 0 .172-.048l1.943-1.138a.59.59 0 0 1 .523-.047c.92.3 1.916.46 2.963.46 4.8 0 8.691-3.288 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-2.32 7.94c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16zm4.64 0c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16z"/>
-            <path d="M15.312 10.813c4.05 0 7.34 2.69 7.34 6.01 0 1.79-.95 3.4-2.45 4.5a.48.48 0 0 0-.17.54l.32 1.2c.015.057.039.114.039.172 0 .14-.11.25-.25.25a.26.26 0 0 1-.14-.04l-1.57-.92a.48.48 0 0 0-.42-.04c-.75.24-1.55.37-2.4.37-4.05 0-7.34-2.69-7.34-6.01 0-3.32 3.29-6.01 7.34-6.01zm-1.88 4.29c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm3.76 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
+            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .172.14.312.313.312a.32.32 0 0 0 .172-.048l1.943-1.138a.59.59 0 0 1 .523-.047c.92.3 1.916.46 2.963.46 4.8 0 8.691-3.288 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-2.32 7.94c-.64 0-1.16-.52-1.16-1.16s.52-1.16 1.16-1.16 1.16.52 1.16 1.16-.52 1.16-1.16 1.16zm4.64 0c-.64 0-1.16-.52-1.16-1.16s.42-.94.94-.94.94.42.94.94-.42.94-.94.94zm3.76 0c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
+            <path d="M15.312 10.813c4.05 0 7.34 2.69 7.34 6.01 0 1.79-.95 3.4-2.45 4.5a.48.48 0 0 0-.17.54l.32 1.2c.015.057.039.114.039.172 0 .14-.11.25-.25.25a.26.26 0 0 1-.14-.04l-1.57-.92a.48.48 0 0 0-.42-.04c-.75.24-1.55.37-2.4.37-4.05 0-7.34-2.69-7.34-6.01 0-3.32 3.29-6.01 7.34-6.01zm-1.88 4.29c-.52 0-.94-.42-.94-.94s.42-.94.94-.94.94.42.94.94-.42.94-.94.94z"/>
           </svg>
           <span class="text-2xl font-bold text-[#0a9b08] tracking-wide">hanx-316</span>
         </div>
@@ -453,6 +389,8 @@
     </div>
   </footer>
 
+  <!-- 数据和渲染 -->
+  <script src="data.js"></script>
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -462,6 +400,29 @@
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
+
+    // 渲染货源表格
+    const tbody = document.getElementById('sourceTbody');
+    function renderSources() {
+      tbody.innerHTML = '';
+      sources.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition' + (item.sold ? ' sold-out' : '');
+        tr.innerHTML = `
+          <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
+          <td class="px-4 py-3.5 text-slate-500">${item.date}</td>
+          <td class="px-4 py-3.5">${item.area}</td>
+          <td class="px-4 py-3.5 font-medium">${item.product}</td>
+          <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price}</td>
+          <td class="px-4 py-3.5">${item.quantity}</td>
+          <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms}</td>
+          <td class="px-4 py-3.5">${item.payment}</td>
+          <td class="px-4 py-3.5">${item.remark}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    renderSources();
   </script>
 </body>
 </html>
