@@ -6,13 +6,8 @@ const sources = [
     product: "3T",
     price: "175万美金/台",
     quantity: "200台",
-    terms: "设备已完成状态：
-
-1.IDC托管协议
-2.机位证明
-3.BIS协议备案完成
-4.GPS 已拆
-5.机台已洗白",
+    terms: "terms: "设备已完成状态：<br>1.IDC托管协议<br>2.机位证明<br>3.BIS协议备案完成<br>4.GPS 已拆<br>5.机台已洗白",
+",
     payment: "外币",
     remark: "支持现场验货",
     sold: false
