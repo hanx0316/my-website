@@ -1,248 +1,72 @@
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-        <div class="flex gap-2 flex-wrap">
-          <button id="addRowBtn" class="px-3.5 py-2 text-sm rounded-lg bg-[#0a9b08] text-white font-medium hover:bg-[#088006] transition">
-            + 新增货源
-          </button>
-          <button id="exportCodeBtn" class="px-3.5 py-2 text-sm rounded-lg border border-slate-300 text-slate-700 font-medium hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-            导出表格代码
-          </button>
-        </div>
-        <p class="text-xs text-slate-500">双击单元格可直接编辑 · 已售货源一键标记</p>
-      </div>
-
-      <div class="table-wrap rounded-xl border border-slate-200 shadow-sm">
-        <table class="w-full text-sm text-left">
-          <thead class="bg-slate-50 text-slate-600 font-semibold">
-            <tr>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源地</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">产品</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">单价</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">数量要求</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 min-w-[220px]">主要交易条件</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">结算方式</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-24 text-center">操作</th>
+<tbody class="divide-y divide-slate-100">
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">1</td>
+              <td class="px-4 py-3.5">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium">4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">180万美金/台</td>
+              <td class="px-4 py-3.5">最低32台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">包出关；支持同台验资验货；可派工程师检测（需买家授权+签保密协议）；货主安排吃住</td>
+              <td class="px-4 py-3.5">外币</td>
+              <td class="px-4 py-3.5">支持现场验货</td>
             </tr>
-          </thead>
-          <tbody id="sourceTbody" class="divide-y divide-slate-100">
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">1</td>
-              <td class="px-4 py-3.5 editable">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium editable">4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">180万美金/台</td>
-              <td class="px-4 py-3.5 editable">最低32台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">包出关；支持同台验资验货；可派工程师检测（需买家授权+签保密协议）；货主安排吃住</td>
-              <td class="px-4 py-3.5 editable">外币</td>
-              <td class="px-4 py-3.5 editable">支持现场验货</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">2</td>
+              <td class="px-4 py-3.5">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium">3T / 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">3T:168万<br>4T:176万</td>
+              <td class="px-4 py-3.5">32台3T + 256台4T</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">货主可协助物流；香港公司交易；货主为基金公司</td>
+              <td class="px-4 py-3.5">美元</td>
+              <td class="px-4 py-3.5">需整批采购</td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">2</td>
-              <td class="px-4 py-3.5 editable">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium editable">3T / 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">3T:168万<br>4T:176万</td>
-              <td class="px-4 py-3.5 editable">32台3T + 256台4T</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">货主可协助物流；香港公司交易；货主为基金公司</td>
-              <td class="px-4 py-3.5 editable">美元</td>
-              <td class="px-4 py-3.5 editable">需整批采购</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">3</td>
+              <td class="px-4 py-3.5">泰国</td>
+              <td class="px-4 py-3.5 font-medium">现货</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">162 USDT</td>
+              <td class="px-4 py-3.5">最低128台<br>共512台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需要泰国虚拟IDC（可借用）</td>
+              <td class="px-4 py-3.5">USDT</td>
+              <td class="px-4 py-3.5">现货</td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">3</td>
-              <td class="px-4 py-3.5 editable">泰国</td>
-              <td class="px-4 py-3.5 font-medium editable">现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">162 USDT</td>
-              <td class="px-4 py-3.5 editable">最低128台<br>共512台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">需要泰国虚拟IDC（可借用）</td>
-              <td class="px-4 py-3.5 editable">USDT</td>
-              <td class="px-4 py-3.5 editable">现货</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">4</td>
+              <td class="px-4 py-3.5">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium">超微 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">172万美金/台</td>
+              <td class="px-4 py-3.5">256台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">要求双非主体；自提；现场看货；货已洗过</td>
+              <td class="px-4 py-3.5">USDT (U)</td>
+              <td class="px-4 py-3.5">支持现场看货</td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">4</td>
-              <td class="px-4 py-3.5 editable">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium editable">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">172万美金/台</td>
-              <td class="px-4 py-3.5 editable">256台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">要求双非主体；自提；现场看货；货已洗过</td>
-              <td class="px-4 py-3.5 editable">USDT (U)</td>
-              <td class="px-4 py-3.5 editable">支持现场看货</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">5</td>
+              <td class="px-4 py-3.5">中东</td>
+              <td class="px-4 py-3.5 font-medium">3T 现货</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">165万美金/台</td>
+              <td class="px-4 py-3.5">-</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">可派工程师直接拉走；不收美金</td>
+              <td class="px-4 py-3.5">部分人民币 + 部分离岸人民币/港币</td>
+              <td class="px-4 py-3.5">支持工程师拉货</td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">5</td>
-              <td class="px-4 py-3.5 editable">中东</td>
-              <td class="px-4 py-3.5 font-medium editable">3T 现货</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">165万美金/台</td>
-              <td class="px-4 py-3.5 editable">-</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">可派工程师直接拉走；不收美金</td>
-              <td class="px-4 py-3.5 editable">部分人民币 + 部分离岸人民币/港币</td>
-              <td class="px-4 py-3.5 editable">支持工程师拉货</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">6</td>
+              <td class="px-4 py-3.5">马来西亚</td>
+              <td class="px-4 py-3.5 font-medium">超微 3T/4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">145万美金/台</td>
+              <td class="px-4 py-3.5">256台/周</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">需先提供DC材料+BIS等审核材料（长期供电协议）；材料审核通过后报价签约；香港签约，马来提货；不要求验资</td>
+              <td class="px-4 py-3.5">仅接受美元</td>
+              <td class="px-4 py-3.5">机房需真实运营</td>
             </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">6</td>
-              <td class="px-4 py-3.5 editable">马来西亚</td>
-              <td class="px-4 py-3.5 font-medium editable">超微 3T/4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">145万美金/台</td>
-              <td class="px-4 py-3.5 editable">256台/周</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">需先提供DC材料+BIS等审核材料（长期供电协议）；材料审核通过后报价签约；香港签约，马来提货；不要求验资</td>
-              <td class="px-4 py-3.5 editable">仅接受美元</td>
-              <td class="px-4 py-3.5 editable">机房需真实运营</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
-            </tr>
-            <tr class="hover:bg-slate-50/80 transition source-row">
-              <td class="px-4 py-3.5 font-medium text-slate-900 row-index">7</td>
-              <td class="px-4 py-3.5 editable">深圳</td>
-              <td class="px-4 py-3.5 font-medium editable">超微 4T</td>
-              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">1435万/台</td>
-              <td class="px-4 py-3.5 editable">128台</td>
-              <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">资金证明，营业执照</td>
-              <td class="px-4 py-3.5 editable">人民币</td>
-              <td class="px-4 py-3.5 editable">营业执照+验资(换合约及保函)/签约/安排交易时间地点/验货/汇款/取货</td>
-              <td class="px-4 py-3.5 text-center">
-                <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-                  标为已售
-                </button>
-              </td>
+            <tr class="hover:bg-slate-50/80 transition">
+              <td class="px-4 py-3.5 font-medium text-slate-900">7</td>
+              <td class="px-4 py-3.5">深圳</td>
+              <td class="px-4 py-3.5 font-medium">超微 4T</td>
+              <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">1435万/台</td>
+              <td class="px-4 py-3.5">128台</td>
+              <td class="px-4 py-3.5 text-slate-600 leading-relaxed">资金证明，营业执照</td>
+              <td class="px-4 py-3.5">人民币</td>
+              <td class="px-4 py-3.5">营业执照+验资(换合约及保函)/签约/安排交易时间地点/验货/汇款/取货</td>
             </tr>
           </tbody>
-        </table>
-      </div>
-
-<style>
-  .sold-out td { color: #94a3b8 !important; text-decoration: line-through; }
-  .sold-out td.text-\[\#0a9b08\] { color: #94a3b8 !important; }
-  .editable { cursor: text; }
-  .editing { background: #f0fdf4; outline: 2px solid #0a9b08; outline-offset: -2px; border-radius: 4px; }
-</style>
-
-<script>
-  const tbody = document.getElementById('sourceTbody');
-
-  // 刷新序号
-  function refreshIndex() {
-    tbody.querySelectorAll('.row-index').forEach((el, idx) => {
-      el.textContent = idx + 1;
-    });
-  }
-
-  // 双击编辑单元格
-  tbody.addEventListener('dblclick', (e) => {
-    const td = e.target.closest('.editable');
-    if (!td || td.classList.contains('editing')) return;
-
-    const oldText = td.innerHTML;
-    td.classList.add('editing');
-    td.contentEditable = true;
-    td.focus();
-
-    // 选中全部内容
-    const range = document.createRange();
-    range.selectNodeContents(td);
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    const finish = () => {
-      td.contentEditable = false;
-      td.classList.remove('editing');
-      if (td.innerHTML.trim() === '') td.innerHTML = oldText;
-    };
-
-    td.addEventListener('blur', finish, { once: true });
-    td.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        td.blur();
-      }
-      if (e.key === 'Escape') {
-        td.innerHTML = oldText;
-        td.blur();
-      }
-    });
-  });
-
-  // 新增货源（置顶）
-  document.getElementById('addRowBtn').addEventListener('click', () => {
-    const tr = document.createElement('tr');
-    tr.className = 'hover:bg-slate-50/80 transition source-row';
-    tr.innerHTML = `
-      <td class="px-4 py-3.5 font-medium text-slate-900 row-index">1</td>
-      <td class="px-4 py-3.5 editable">请输入货源地</td>
-      <td class="px-4 py-3.5 font-medium editable">请输入产品</td>
-      <td class="px-4 py-3.5 text-[#0a9b08] font-semibold editable">请输入单价</td>
-      <td class="px-4 py-3.5 editable">请输入数量</td>
-      <td class="px-4 py-3.5 text-slate-600 leading-relaxed editable">请输入交易条件</td>
-      <td class="px-4 py-3.5 editable">请输入结算方式</td>
-      <td class="px-4 py-3.5 editable">请输入备注</td>
-      <td class="px-4 py-3.5 text-center">
-        <button class="toggle-sold text-xs px-2 py-1 rounded border border-slate-300 hover:border-[#0a9b08] hover:text-[#0a9b08] transition">
-          标为已售
-        </button>
-      </td>
-    `;
-    tbody.insertBefore(tr, tbody.firstChild);
-    refreshIndex();
-  });
-
-  // 标记已售
-  tbody.addEventListener('click', (e) => {
-    const btn = e.target.closest('.toggle-sold');
-    if (!btn) return;
-    const tr = btn.closest('tr');
-    tr.classList.toggle('sold-out');
-    btn.textContent = tr.classList.contains('sold-out') ? '恢复上架' : '标为已售';
-  });
-
-  // 导出纯净表格代码
-  document.getElementById('exportCodeBtn').addEventListener('click', () => {
-    // 克隆节点，移除编辑相关的类和操作列
-    const clone = tbody.cloneNode(true);
-    clone.querySelectorAll('.toggle-sold').forEach(btn => btn.closest('td').remove());
-    clone.querySelectorAll('.editable').forEach(el => el.classList.remove('editable'));
-    clone.querySelectorAll('.source-row').forEach(el => el.classList.remove('source-row'));
-    clone.id = '';
-
-    // 组装成完整表格HTML
-    const code = `<tbody class="divide-y divide-slate-100">
-${clone.innerHTML.trim()}
-</tbody>`;
-
-    navigator.clipboard.writeText(code).then(() => {
-      const btn = document.getElementById('exportCodeBtn');
-      const originText = btn.textContent;
-      btn.textContent = '已复制代码！';
-      btn.classList.add('border-[#0a9b08]', 'text-[#0a9b08]');
-      setTimeout(() => {
-        btn.textContent = originText;
-        btn.classList.remove('border-[#0a9b08]', 'text-[#0a9b08]');
-      }, 2000);
-    });
-  });
-</script>
