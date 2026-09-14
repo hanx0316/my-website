@@ -72,6 +72,42 @@
     .nav-link:hover { color: var(--green); }
     /* 已售样式：整行变浅灰，无删除线 */
     .sold-out { opacity: 0.55; }
+
+    /* ===== 新增：审核准入制板块样式 ===== */
+    .audit-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+    }
+    .audit-card:hover {
+      border-color: rgba(10, 155, 8, 0.4);
+      box-shadow: 0 8px 24px -6px rgba(10, 155, 8, 0.12);
+      transform: translateY(-2px);
+    }
+    .audit-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(10, 155, 8, 0.1);
+      color: #0a9b08;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* ===== 新增：货源表格滚动样式 ===== */
+    .table-scroll-container {
+      max-height: 520px; /* 适配8条数据高度 */
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    .table-scroll-container thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f8fafc;
+    }
   </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -84,6 +120,7 @@
           <span class="text-xl font-bold tracking-tight text-slate-900">算力集</span>
         </a>
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+          <a href="#audit" class="nav-link transition">准入规则</a>
           <a href="#real-sources" class="nav-link transition">今日货源</a>
           <a href="#features" class="nav-link transition">产品优势</a>
           <a href="#how" class="nav-link transition">交易流程</a>
@@ -104,6 +141,7 @@
       </div>
       <div id="mobileMenu" class="hidden md:hidden pb-4 border-t border-slate-100">
         <nav class="flex flex-col gap-1 pt-3 text-sm font-medium text-slate-600">
+          <a href="#audit" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">准入规则</a>
           <a href="#real-sources" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">今日货源</a>
           <a href="#features" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">产品优势</a>
           <a href="#how" class="px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-[#0a9b08] transition">交易流程</a>
@@ -113,7 +151,8 @@
       </div>
     </div>
   </header>
-  <!-- Hero -->
+
+  <!-- Hero 主视觉 -->
   <section class="pt-28 pb-14 bg-gradient-to-b from-slate-50 to-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a9b08]/08 border border-[#0a9b08]/15 text-sm font-medium mb-7">
@@ -138,6 +177,47 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== 新增：算力审核准入制板块 ===== -->
+  <section id="audit" class="py-14 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a9b08]/08 border border-[#0a9b08]/15 text-sm font-medium mb-5">
+          <span class="pulse-dot"></span>
+          <span class="text-[#0a9b08]">会员审核准入制</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">算力审核准入制 · 把稀缺资源留给真实需求</h2>
+        <p class="text-slate-500 max-w-2xl mx-auto">通过企业资质与项目真实性双重评估，方可获得稳定算力额度与交付保障，杜绝炒货倒货，保障真实产业算力需求</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        <div class="audit-card">
+          <div class="w-11 h-11 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-xl mb-4">🔍</div>
+          <h3 class="text-lg font-semibold mb-2 text-slate-900">资质双审机制</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">核验企业资质、项目真实性与资金实力，过滤投机倒货订单，确保上游配额流向真实产业需求。</p>
+        </div>
+        <div class="audit-card">
+          <div class="w-11 h-11 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-xl mb-4">⚡</div>
+          <h3 class="text-lg font-semibold mb-2 text-slate-900">优先交付保障</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">审核通过客户可锁定核心渠道排产额度，协调优先排期，平均交付时效压缩至48小时。</p>
+        </div>
+        <div class="audit-card">
+          <div class="w-11 h-11 rounded-xl bg-[#0a9b08]/10 flex items-center justify-center text-xl mb-4">🔒</div>
+          <h3 class="text-lg font-semibold mb-2 text-slate-900">保密合规兜底</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">全程签署NDA保密协议，常规商业信息保密期10年以上，协助完成全流程合规报备。</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="text-sm text-slate-500">客户分层匹配：</span>
+        <span class="audit-tag">初创团队 → H100单卡工作站</span>
+        <span class="audit-tag">中型企业 → H200双路服务器</span>
+        <span class="audit-tag">大型云商 → B300整机集群</span>
+        <span class="audit-tag">前沿科研 → 下一代架构产能预留</span>
+      </div>
+    </div>
+  </section>
+
   <!-- 信任数据条 -->
   <section class="py-6 border-y border-slate-100 bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -157,6 +237,7 @@
       </div>
     </div>
   </section>
+
   <!-- 今日B300货源 -->
   <section id="real-sources" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -173,30 +254,35 @@
           我有采购需求 →
         </a>
       </div>
-      <div class="table-wrap rounded-xl border border-slate-200 shadow-sm">
-        <table class="w-full text-sm text-left">
-          <thead class="bg-slate-50 text-slate-600 font-semibold">
-            <tr>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-16">货源</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-28">更新日期</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源地</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">产品</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">单价</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">数量要求</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 min-w-[220px]">主要交易条件</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">结算方式</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
-              <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-24 text-center">货源状态</th>
-            </tr>
-          </thead>
-          <tbody id="sourceTbody" class="divide-y divide-slate-100">
-            <!-- 数据自动渲染 -->
-          </tbody>
-        </table>
+
+      <!-- 表格滚动容器：默认展示8条，超出可滚动 -->
+      <div class="rounded-xl border border-slate-200 shadow-sm">
+        <div class="table-scroll-container">
+          <table class="w-full text-sm text-left">
+            <thead class="bg-slate-50 text-slate-600 font-semibold">
+              <tr>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-16">货源</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-28">更新日期</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">货源地</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">产品</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">单价</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">数量要求</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 min-w-[220px]">主要交易条件</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">结算方式</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap">备注</th>
+                <th class="px-4 py-3.5 border-b border-slate-200 whitespace-nowrap w-24 text-center">货源状态</th>
+              </tr>
+            </thead>
+            <tbody id="sourceTbody" class="divide-y divide-slate-100">
+              <!-- 数据自动渲染 -->
+            </tbody>
+          </table>
+        </div>
       </div>
       <p class="mt-4 text-xs text-slate-400 text-center">* 以上信息每天更新，具体以实际沟通确认结果为准。有意向请直接联系我们。</p>
     </div>
   </section>
+
   <!-- 产品优势 -->
   <section id="features" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -223,6 +309,7 @@
       </div>
     </div>
   </section>
+
   <!-- 交易流程 -->
   <section id="how" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -249,6 +336,7 @@
       </div>
     </div>
   </section>
+
   <!-- 关于我们 -->
   <section id="about" class="py-16 bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -280,6 +368,7 @@
       </div>
     </div>
   </section>
+
   <!-- 联系 -->
   <section id="contact" class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -335,6 +424,7 @@
       </div>
     </div>
   </section>
+
   <!-- 页脚 -->
   <footer class="py-10 border-t border-slate-200 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -352,8 +442,8 @@
       </div>
     </div>
   </footer>
-  <!-- 数据和渲染 -->
-  <script src="data.js"></script>
+
+  <!-- 交互脚本 -->
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -363,6 +453,132 @@
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
+
+    // 货源数据（共11条，默认展示8条，超出可滚动）
+    const sources = [
+      {
+        date: '2026-09-10',
+        area: '深圳',
+        product: '戴尔4t',
+        price: '1447万/台',
+        quantity: '128台',
+        terms: '购买方向代采方转一笔金额，代采公司现场显示转款记录余额，购买方出示余额水单，公司名称遮挡，出示代采公司与客户公司代采合同或授权代采意向书（关键信息脱敏）货方出示过往交易记录。确认没有问题，双方签合同，购买方向代采公司开出银承，货方看到开出银承，通知海外72小时内发货到深圳，现货交割，压测一台，付一台款，居间同时付清。',
+        payment: '人民币',
+        remark: '现货，货在香港',
+        sold: false
+      },
+      {
+        date: '2026-09-05',
+        area: '深圳',
+        product: '4T',
+        price: '1350万/台',
+        quantity: '64台',
+        terms: '期货，两周，按合同走流程，国家队的货。付款条件：卖方先开履保6%，买方预付5%，待到港看到货和物权再开80%信用证，最后压测完付尾款。',
+        payment: '人民币',
+        remark: '期货',
+        sold: false
+      },
+      {
+        date: '2026-09-08',
+        area: '香港',
+        product: 'GB300 8卡整机',
+        price: '2980万/台',
+        quantity: '32台',
+        terms: '现货香港仓交收，全款提货，支持上门验机，出具原厂验机报告，可协助安排物流清关。',
+        payment: '美元/人民币',
+        remark: '现货，原封',
+        sold: false
+      },
+      {
+        date: '2026-09-07',
+        area: '上海',
+        product: 'H200 8卡服务器',
+        price: '920万/台',
+        quantity: '48台',
+        terms: '国行含税现货，原厂质保三年，支持对公转账，货到验收合格后付尾款，可提供安装调试服务。',
+        payment: '人民币 对公',
+        remark: '国行带票',
+        sold: false
+      },
+      {
+        date: '2026-09-06',
+        area: '新加坡',
+        product: 'B300 4T 整机',
+        price: '1520万/台',
+        quantity: '96台',
+        terms: '新加坡FTZ保税仓现货，支持离岸结算，TT付款，可转厂交易，协助安排东南亚物流配送。',
+        payment: '美元 TT',
+        remark: '保税仓现货',
+        sold: false
+      },
+      {
+        date: '2026-09-04',
+        area: '深圳',
+        product: 'H100 8卡整机',
+        price: '760万/台',
+        quantity: '16台',
+        terms: '现货成色95新，已过保，运行稳定，可现场测机，打包出不拆零，付款后24小时内提货。',
+        payment: '人民币',
+        remark: '二手准新',
+        sold: false
+      },
+      {
+        date: '2026-09-03',
+        area: '韩国',
+        product: 'B200 整机',
+        price: '1180万/台',
+        quantity: '72台',
+        terms: '韩国原厂直采，货期三周，信用证结算，可指定国内港口交货，包清关关税。',
+        payment: '信用证',
+        remark: '海外直采',
+        sold: false
+      },
+      {
+        date: '2026-09-02',
+        area: '北京',
+        product: 'A100 40G 整机',
+        price: '320万/台',
+        quantity: '24台',
+        terms: '在保机器，原厂保修到2027年，带授权license，可迁移，支持上门验货。',
+        payment: '人民币 对公',
+        remark: '带授权',
+        sold: false
+      },
+      {
+        date: '2026-09-01',
+        area: '深圳',
+        product: 'L40S 整机',
+        price: '185万/台',
+        quantity: '56台',
+        terms: '全新国行现货，含税含运，批量采购可议价，支持分期付款，首付30%发货。',
+        payment: '人民币',
+        remark: '全新国行',
+        sold: false
+      },
+      {
+        date: '2026-08-30',
+        area: '香港',
+        product: 'H800 8卡整机',
+        price: '680万/台',
+        quantity: '40台',
+        terms: '香港现货，原封未拆，支持美元结算，可协助入境，渠道稳定可长期供货。',
+        payment: '美元',
+        remark: '长期供货',
+        sold: true
+      },
+      {
+        date: '2026-08-28',
+        area: '上海',
+        product: 'B100 整机',
+        price: '860万/台',
+        quantity: '20台',
+        terms: '期货一个月，定制配置，预付20%定金，生产完成验货后付尾款，原厂直供。',
+        payment: '人民币 对公',
+        remark: '定制期货',
+        sold: false
+      }
+    ];
+
     // 渲染货源表格
     const tbody = document.getElementById('sourceTbody');
     function renderSources() {
