@@ -11,13 +11,13 @@ var sourceList = [
   // ===== 最新货源改这一组，改单引号里的文字就行 =====
   {
     date:     '2026-09-15',
-    area:     '地区',
-    product:  '产品型号',
-    price:    '单价',
-    quantity: '数量',
-    terms:    '交易条件说明',
-    payment:  '结算方式',
-    remark:   '备注',
+    area:     '深圳',
+    product:  'h200',
+    price:    '405万/台',
+    quantity: '128台',
+    terms:    '签合同后6-8周交货。国内厂商组装的，签合同交预付款，厂家开等额保函反担保。货主公司IPO中。',
+    payment:  '人民币',
+    remark:   '期货',
     sold:     false
   },
 
