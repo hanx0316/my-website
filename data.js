@@ -11,7 +11,7 @@ var sourceList = [
   // ===== 最新货源改这一组，改单引号里的文字就行 =====
   {
     date:     '2026-09-15',
-    area:     '深圳',
+    area:     '浙江',
     product:  'h200',
     price:    '405万/台',
     quantity: '128台',
