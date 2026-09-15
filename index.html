@@ -426,7 +426,10 @@
     </div>
   </footer>
 
-  <!-- 交互脚本 -->
+  <!-- 引入货源数据文件，每次更新data.js后修改?v=后面的数字，可强制浏览器加载最新数据 -->
+  <script src="data.js?v=20260915"></script>
+
+  <!-- 页面交互脚本 -->
   <script>
     // 移动端菜单
     const menuBtn = document.getElementById('menuBtn');
@@ -438,155 +441,56 @@
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
 
-    // 货源数据（全部设为已售状态）
-    const sources = [
-      {
-        date: '2026-09-10',
-        area: '深圳',
-        product: '戴尔4t',
-        price: '1447万/台',
-        quantity: '128台',
-        terms: '购买方向代采方转一笔金额，代采公司现场显示转款记录余额，购买方出示余额水单，公司名称遮挡，出示代采公司与客户公司代采合同或授权代采意向书（关键信息脱敏）货方出示过往交易记录。确认没有问题，双方签合同，购买方向代采公司开出银承，货方看到开出银承，通知海外72小时内发货到深圳，现货交割，压测一台，付一台款，居间同时付清。',
-        payment: '人民币',
-        remark: '现货，货在香港',
-        sold: true
-      },
-      {
-        date: '2026-09-05',
-        area: '深圳',
-        product: '4T',
-        price: '1350万/台',
-        quantity: '64台',
-        terms: '期货，两周，按合同走流程，国家队的货。付款条件：卖方先开履保6%，买方预付5%，待到港看到货和物权再开80%信用证，最后压测完付尾款。',
-        payment: '人民币',
-        remark: '期货',
-        sold: true
-      },
-      {
-        date: '2026-09-08',
-        area: '香港',
-        product: 'GB300 8卡',
-        price: '2980万/台',
-        quantity: '32台',
-        terms: '现货香港仓交收，全款提货，支持上门验机，出具原厂验机报告，可协助安排物流清关。',
-        payment: '美元/人民币',
-        remark: '现货，原封',
-        sold: true
-      },
-      {
-        date: '2026-09-07',
-        area: '上海',
-        product: 'H200 8卡服务器',
-        price: '920万/台',
-        quantity: '48台',
-        terms: '国行含税现货，原厂质保三年，支持对公转账，货到验收合格后付尾款，可提供安装调试服务。',
-        payment: '人民币 对公',
-        remark: '国行带票',
-        sold: true
-      },
-      {
-        date: '2026-09-06',
-        area: '新加坡',
-        product: 'B300 4T 整机',
-        price: '1520万/台',
-        quantity: '96台',
-        terms: '新加坡FTZ保税仓现货，支持离岸结算，TT付款，可转厂交易，协助安排东南亚物流配送。',
-        payment: '美元 TT',
-        remark: '保税仓现货',
-        sold: true
-      },
-      {
-        date: '2026-09-04',
-        area: '深圳',
-        product: 'H100 8卡整机',
-        price: '760万/台',
-        quantity: '16台',
-        terms: '现货成色95新，已过保，运行稳定，可现场测机，打包出不拆零，付款后24小时内提货。',
-        payment: '人民币',
-        remark: '二手准新',
-        sold: true
-      },
-      {
-        date: '2026-09-03',
-        area: '韩国',
-        product: 'B300 整机',
-        price: '1180万/台',
-        quantity: '72台',
-        terms: '韩国原厂直采，货期三周，信用证结算，可指定国内港口交货，包清关关税。',
-        payment: '信用证',
-        remark: '海外直采',
-        sold: true
-      },
-      {
-        date: '2026-09-02',
-        area: '北京',
-        product: 'A100 40G 整机',
-        price: '320万/台',
-        quantity: '24台',
-        terms: '在保机器，原厂保修到2027年，带授权license，可迁移，支持上门验货。',
-        payment: '人民币 对公',
-        remark: '带授权',
-        sold: true
-      },
-      {
-        date: '2026-09-01',
-        area: '深圳',
-        product: 'L40S 整机',
-        price: '185万/台',
-        quantity: '56台',
-        terms: '全新国行现货，含税含运，批量采购可议价，支持分期付款，首付30%发货。',
-        payment: '人民币',
-        remark: '全新国行',
-        sold: true
-      },
-      {
-        date: '2026-08-30',
-        area: '香港',
-        product: 'H100 8卡整机',
-        price: '680万/台',
-        quantity: '40台',
-        terms: '香港现货，原封未拆，支持美元结算，可协助入境，渠道稳定可长期供货。',
-        payment: '美元',
-        remark: '长期供货',
-        sold: true
-      },
-      {
-        date: '2026-08-28',
-        area: '上海',
-        product: 'B100 整机',
-        price: '860万/台',
-        quantity: '20台',
-        terms: '期货一个月，定制配置，预付20%定金，生产完成验货后付尾款，原厂直供。',
-        payment: '人民币 对公',
-        remark: '定制期货',
-        sold: true
-      }
-    ];
-
     // 渲染货源表格
     const tbody = document.getElementById('sourceTbody');
     function renderSources() {
+      // 数据加载失败容错
+      if (!sourceList || !Array.isArray(sourceList)) {
+        tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件</td></tr>`;
+        return;
+      }
+
       tbody.innerHTML = '';
-      sources.forEach((item, idx) => {
+      sourceList.forEach((item, idx) => {
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50/80 transition sold-out';
-        const statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-xs font-medium">已售</span>';
-        
-        tr.innerHTML = `
-          <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
-          <td class="px-4 py-3.5 text-slate-500">${item.date}</td>
-          <td class="px-4 py-3.5">${item.area}</td>
-          <td class="px-4 py-3.5 font-medium">${item.product}</td>
-          <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price}</td>
-          <td class="px-4 py-3.5">${item.quantity}</td>
-          <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms}</td>
-          <td class="px-4 py-3.5">${item.payment}</td>
-          <td class="px-4 py-3.5">${item.remark}</td>
-          <td class="px-4 py-3.5 text-center">${statusTag}</td>
-        `;
+        const isSold = item.sold === true;
+
+        if (isSold) {
+          tr.className = 'hover:bg-slate-50/80 transition sold-out';
+          const statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-xs font-medium">已售</span>';
+          tr.innerHTML = `
+            <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
+            <td class="px-4 py-3.5 text-slate-500">${item.date || '-'}</td>
+            <td class="px-4 py-3.5">${item.area || '-'}</td>
+            <td class="px-4 py-3.5 font-medium">${item.product || '-'}</td>
+            <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price || '-'}</td>
+            <td class="px-4 py-3.5">${item.quantity || '-'}</td>
+            <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms || '-'}</td>
+            <td class="px-4 py-3.5">${item.payment || '-'}</td>
+            <td class="px-4 py-3.5">${item.remark || '-'}</td>
+            <td class="px-4 py-3.5 text-center">${statusTag}</td>
+          `;
+        } else {
+          tr.className = 'hover:bg-slate-50/80 transition';
+          const statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-green-100 text-[#0a9b08] text-xs font-medium">可售</span>';
+          tr.innerHTML = `
+            <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
+            <td class="px-4 py-3.5 text-slate-500">${item.date || '-'}</td>
+            <td class="px-4 py-3.5">${item.area || '-'}</td>
+            <td class="px-4 py-3.5 font-medium">${item.product || '-'}</td>
+            <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price || '-'}</td>
+            <td class="px-4 py-3.5">${item.quantity || '-'}</td>
+            <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms || '-'}</td>
+            <td class="px-4 py-3.5">${item.payment || '-'}</td>
+            <td class="px-4 py-3.5">${item.remark || '-'}</td>
+            <td class="px-4 py-3.5 text-center">${statusTag}</td>
+          `;
+        }
         tbody.appendChild(tr);
       });
     }
+
+    // 页面加载完成后渲染
     renderSources();
   </script>
 </body>
