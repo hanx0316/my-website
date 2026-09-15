@@ -70,10 +70,8 @@
     }
     
     .nav-link:hover { color: var(--green); }
-    /* 已售样式：整行变浅灰 */
     .sold-out { opacity: 0.55; }
 
-    /* 审核准入制板块样式 */
     .audit-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -87,7 +85,6 @@
       transform: translateY(-2px);
     }
 
-    /* 货源表格滚动样式 */
     .table-scroll-container {
       max-height: 520px;
       overflow-y: auto;
@@ -206,7 +203,6 @@
         </a>
       </div>
 
-      <!-- 表格滚动容器：默认展示8条，超出可滚动 -->
       <div class="rounded-xl border border-slate-200 shadow-sm">
         <div class="table-scroll-container">
           <table class="w-full text-sm text-left">
@@ -359,7 +355,6 @@
         <h2 class="text-3xl font-bold text-slate-900 mb-3">准备好对接真实货源了吗？</h2>
         <p class="text-slate-500">无论购买还是出售算力服务器，算力集团队随时为你服务。</p>
       </div>
-      <!-- 表单 -->
       <div class="p-8 rounded-2xl card bg-white">
         <form action="https://formsubmit.co/aladeve@qq.com" method="POST" class="space-y-5">
           <input type="hidden" name="_subject" value="【算力集】新的询价需求">
@@ -426,10 +421,7 @@
     </div>
   </footer>
 
-  <!-- 引入货源数据文件，每次更新data.js后修改?v=后面的数字，可强制浏览器加载最新数据 -->
-  <script src="data.js?v=20260915"></script>
-
-  <!-- 页面交互脚本 -->
+  <!-- 页面交互 + 动态加载货源数据（自动加时间戳，永久不用手动改版本号） -->
   <script>
     // 移动端菜单
     const menuBtn = document.getElementById('menuBtn');
@@ -444,7 +436,6 @@
     // 渲染货源表格
     const tbody = document.getElementById('sourceTbody');
     function renderSources() {
-      // 数据加载失败容错
       if (!sourceList || !Array.isArray(sourceList)) {
         tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件</td></tr>`;
         return;
@@ -490,8 +481,14 @@
       });
     }
 
-    // 页面加载完成后渲染
-    renderSources();
+    // 自动加载最新 data.js，每次打开页面都会强制拉取最新文件，无需手动改版本号
+    const dataScript = document.createElement('script');
+    dataScript.src = `data.js?t=${Date.now()}`;
+    dataScript.onload = renderSources;
+    dataScript.onerror = () => {
+      tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源文件加载失败，请检查 data.js 是否存在</td></tr>`;
+    };
+    document.body.appendChild(dataScript);
   </script>
 </body>
 </html>
