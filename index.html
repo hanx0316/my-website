@@ -421,7 +421,7 @@
     </div>
   </footer>
 
-  <!-- 页面交互 + 动态加载货源数据（自动加时间戳，永久不用手动改版本号） -->
+  <!-- 动态加载货源 + 页面交互（自动加时间戳，永久不用手动改版本号） -->
   <script>
     // 移动端菜单
     const menuBtn = document.getElementById('menuBtn');
@@ -436,8 +436,8 @@
     // 渲染货源表格
     const tbody = document.getElementById('sourceTbody');
     function renderSources() {
-      if (!sourceList || !Array.isArray(sourceList)) {
-        tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件</td></tr>`;
+      if (!window.sourceList || !Array.isArray(sourceList)) {
+        tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件格式是否正确</td></tr>`;
         return;
       }
 
@@ -481,7 +481,7 @@
       });
     }
 
-    // 自动加载最新 data.js，每次打开页面都会强制拉取最新文件，无需手动改版本号
+    // 自动加载最新 data.js，每次打开页面强制拉取最新文件
     const dataScript = document.createElement('script');
     dataScript.src = `data.js?t=${Date.now()}`;
     dataScript.onload = renderSources;
