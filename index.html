@@ -221,7 +221,6 @@
               </tr>
             </thead>
             <tbody id="sourceTbody" class="divide-y divide-slate-100">
-              <!-- 数据自动渲染 -->
             </tbody>
           </table>
         </div>
@@ -421,72 +420,62 @@
     </div>
   </footer>
 
-  <!-- 动态加载货源 + 页面交互（自动加时间戳，永久不用手动改版本号） -->
+  <!-- 动态加载货源 + 页面交互 -->
   <script>
     // 移动端菜单
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', function () {
       mobileMenu.classList.toggle('hidden');
     });
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.add('hidden');
+      });
     });
 
     // 渲染货源表格
-    const tbody = document.getElementById('sourceTbody');
+    var tbody = document.getElementById('sourceTbody');
     function renderSources() {
-      if (!window.sourceList || !Array.isArray(sourceList)) {
-        tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件格式是否正确</td></tr>`;
+      if (typeof sourceList === 'undefined' || !Array.isArray(sourceList)) {
+        tbody.innerHTML = '<tr><td colspan="10" class="text-center py-6 text-red-500">货源数据加载失败，请检查 data.js 文件格式是否正确</td></tr>';
         return;
       }
 
       tbody.innerHTML = '';
-      sourceList.forEach((item, idx) => {
-        const tr = document.createElement('tr');
-        const isSold = item.sold === true;
+      sourceList.forEach(function (item, idx) {
+        var tr = document.createElement('tr');
+        var isSold = item.sold === true;
 
         if (isSold) {
           tr.className = 'hover:bg-slate-50/80 transition sold-out';
-          const statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-xs font-medium">已售</span>';
-          tr.innerHTML = `
-            <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
-            <td class="px-4 py-3.5 text-slate-500">${item.date || '-'}</td>
-            <td class="px-4 py-3.5">${item.area || '-'}</td>
-            <td class="px-4 py-3.5 font-medium">${item.product || '-'}</td>
-            <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price || '-'}</td>
-            <td class="px-4 py-3.5">${item.quantity || '-'}</td>
-            <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms || '-'}</td>
-            <td class="px-4 py-3.5">${item.payment || '-'}</td>
-            <td class="px-4 py-3.5">${item.remark || '-'}</td>
-            <td class="px-4 py-3.5 text-center">${statusTag}</td>
-          `;
+          var statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500 text-xs font-medium">已售</span>';
         } else {
           tr.className = 'hover:bg-slate-50/80 transition';
-          const statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-green-100 text-[#0a9b08] text-xs font-medium">可售</span>';
-          tr.innerHTML = `
-            <td class="px-4 py-3.5 font-medium text-slate-900">${idx + 1}</td>
-            <td class="px-4 py-3.5 text-slate-500">${item.date || '-'}</td>
-            <td class="px-4 py-3.5">${item.area || '-'}</td>
-            <td class="px-4 py-3.5 font-medium">${item.product || '-'}</td>
-            <td class="px-4 py-3.5 text-[#0a9b08] font-semibold">${item.price || '-'}</td>
-            <td class="px-4 py-3.5">${item.quantity || '-'}</td>
-            <td class="px-4 py-3.5 text-slate-600 leading-relaxed">${item.terms || '-'}</td>
-            <td class="px-4 py-3.5">${item.payment || '-'}</td>
-            <td class="px-4 py-3.5">${item.remark || '-'}</td>
-            <td class="px-4 py-3.5 text-center">${statusTag}</td>
-          `;
+          var statusTag = '<span class="inline-block px-2.5 py-0.5 rounded-full bg-green-100 text-[#0a9b08] text-xs font-medium">可售</span>';
         }
+
+        tr.innerHTML =
+          '<td class="px-4 py-3.5 font-medium text-slate-900">' + (idx + 1) + '</td>' +
+          '<td class="px-4 py-3.5 text-slate-500">' + (item.date || '-') + '</td>' +
+          '<td class="px-4 py-3.5">' + (item.area || '-') + '</td>' +
+          '<td class="px-4 py-3.5 font-medium">' + (item.product || '-') + '</td>' +
+          '<td class="px-4 py-3.5 text-[#0a9b08] font-semibold">' + (item.price || '-') + '</td>' +
+          '<td class="px-4 py-3.5">' + (item.quantity || '-') + '</td>' +
+          '<td class="px-4 py-3.5 text-slate-600 leading-relaxed">' + (item.terms || '-') + '</td>' +
+          '<td class="px-4 py-3.5">' + (item.payment || '-') + '</td>' +
+          '<td class="px-4 py-3.5">' + (item.remark || '-') + '</td>' +
+          '<td class="px-4 py-3.5 text-center">' + statusTag + '</td>';
         tbody.appendChild(tr);
       });
     }
 
     // 自动加载最新 data.js，每次打开页面强制拉取最新文件
-    const dataScript = document.createElement('script');
-    dataScript.src = `data.js?t=${Date.now()}`;
+    var dataScript = document.createElement('script');
+    dataScript.src = 'data.js?t=' + Date.now();
     dataScript.onload = renderSources;
-    dataScript.onerror = () => {
-      tbody.innerHTML = `<tr><td colspan="10" class="text-center py-6 text-red-500">货源文件加载失败，请检查 data.js 是否存在</td></tr>`;
+    dataScript.onerror = function () {
+      tbody.innerHTML = '<tr><td colspan="10" class="text-center py-6 text-red-500">货源文件加载失败，请检查 data.js 是否存在</td></tr>';
     };
     document.body.appendChild(dataScript);
   </script>
