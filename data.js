@@ -12,7 +12,7 @@ var sourceList = [
   {
     date:     '2026-09-15',
     area:     '浙江',
-    product:  'h200',
+    product:  'H200',
     price:    '405万/台',
     quantity: '128台',
     terms:    '签合同后6-8周交货。国内厂商组装的，签合同交预付款，厂家开等额保函反担保。货主公司IPO中。',
